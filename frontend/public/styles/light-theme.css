@@ -1,0 +1,299 @@
+/* Light Theme CSS with improved contrast */
+:root {
+  --primary-color: #2e4481;          /* Maintained primary blue */
+  --primary-dark: #1f2f56;           /* Darker version for contrast */
+  --primary-light: #5474b4;          /* Lighter version for hover states */
+  --secondary-color: #1f2f56;
+  --accent-color: #e01e2c;
+  --background-color: #f8f9fa;
+  --background-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --text-color: #222222;             /* Darker text for better contrast */
+  --text-muted: #5c636a;             /* Darker muted text */
+  --card-background: #ffffff;
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --input-background: #ffffff;
+  --input-border: #ced4da;
+  --input-text: #222222;             /* Darker input text */
+  --panel-background: #f8f9fa;
+  --success-color: #198754;          /* Darker green for better contrast */
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #0891b2;             /* Darker blue for better contrast */
+  --disabled-color: #6c757d;         /* Darker disabled for better contrast */
+  --dropdown-hover: #e9ecef;         /* Slightly darker hover */
+  --divider-color: #ced4da;          /* Darker divider */
+  --step-inactive: #adb5bd;          /* Much darker inactive step */
+  --toast-success-bg: #d4edda;
+  --toast-success-text: #155724;
+  --toast-error-bg: #f8d7da;
+  --toast-error-text: #721c24;
+  --toast-info-bg: #d1ecf1;
+  --toast-info-text: #0c5460;
+  --focus-outline: #4d6ed0;          /* Blue focus outline */
+  --link-color: #0d6efd;             /* Standard link blue */
+  --link-hover-color: #0a58ca;       /* Darker link hover */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Focus state improvements */
+:focus {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+}
+
+.app-container {
+  background: var(--background-gradient);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.p-card,
+.card {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--divider-color);
+}
+
+.p-card .p-card-header,
+.card-header {
+  background-color: var(--primary-color);
+  color: white;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.p-dropdown {
+  background-color: var(--input-background);
+  border-color: var(--input-border);
+  color: var(--input-text);
+}
+
+.p-dropdown-item {
+  color: var(--text-color);
+}
+
+.p-dropdown-item:hover {
+  background-color: var(--dropdown-hover);
+}
+
+.p-button.p-button-raised {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.p-button.p-button-raised:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.p-button.p-button-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+}
+
+.p-button.p-button-outlined {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Steps Component Styling - Improved for Light Mode */
+.p-steps .p-steps-item .p-menuitem-link {
+  background-color: transparent;
+}
+
+.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
+  background-color: var(--primary-color);
+  color: white;
+  border: 2px solid var(--primary-color);
+  font-weight: 600;
+}
+
+.p-steps .p-steps-item:not(.p-highlight):not(.p-disabled) .p-menuitem-link .p-steps-number {
+  background-color: #e9ecef;
+  color: var(--text-muted);
+  border: 2px solid var(--step-inactive);
+}
+
+.p-steps .p-steps-item .p-menuitem-link .p-steps-title {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-title {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.p-steps .p-steps-item:not(.p-highlight):not(.p-disabled) .p-menuitem-link .p-steps-title {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.p-steps .p-steps-item:before {
+  border-top: 3px solid var(--step-inactive);
+}
+
+.p-steps .p-steps-item.p-highlight:before {
+  border-top: 3px solid var(--primary-color);
+}
+
+/* Progress Bar Improvements */
+.p-progressbar {
+  background-color: #e9ecef;
+  border: 1px solid var(--divider-color);
+  height: 8px !important;
+}
+
+.p-progressbar .p-progressbar-value {
+  background-color: var(--primary-color);
+}
+
+.alert-success {
+  color: var(--toast-success-text);
+  background-color: var(--toast-success-bg);
+  border: 1px solid var(--success-color);
+}
+
+.alert-error {
+  color: var(--toast-error-text);
+  background-color: var(--toast-error-bg);
+  border: 1px solid var(--danger-color);
+}
+
+.alert-info {
+  color: var(--toast-info-text);
+  background-color: var(--toast-info-bg);
+  border: 1px solid var(--info-color);
+}
+
+.prompt-preview {
+  background-color: var(--panel-background);
+  border: 1px solid var(--divider-color);
+}
+
+code {
+  background-color: #f0f0f0;
+  color: var(--accent-color);
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--divider-color);
+}
+
+.output-list li {
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.output-list li:hover {
+  background-color: var(--dropdown-hover);
+}
+
+.header {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  color: white;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+/* Light theme overrides for PrimeReact components */
+.p-dropdown-panel {
+  background-color: var(--input-background);
+  border-color: var(--input-border);
+}
+
+.p-toast .p-toast-message {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border: 1px solid var(--divider-color);
+}
+
+.p-toast .p-toast-message.p-toast-message-success {
+  border-left: 4px solid var(--success-color);
+}
+
+.p-toast .p-toast-message.p-toast-message-error {
+  border-left: 4px solid var(--danger-color);
+}
+
+.p-toast .p-toast-message.p-toast-message-info {
+  border-left: 4px solid var(--info-color);
+}
+
+.p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
+  color: var(--text-color);
+}
+
+.p-toast .p-toast-message .p-toast-message-content .p-toast-summary {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.p-inputtext {
+  background-color: var(--input-background);
+  color: var(--input-text);
+  border-color: var(--input-border);
+}
+
+.p-inputtext:enabled:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.bg-success {
+  background-color: var(--success-color) !important;
+  color: white !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+}
+
+.output-list {
+  list-style: none;
+  padding: 0;
+}
+
+.output-list li {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.prompt-preview {
+  padding: 1rem;
+  margin-top: 1rem;
+  white-space: pre-wrap;
+}
+
+.alert {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}

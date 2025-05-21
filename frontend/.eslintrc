@@ -1,0 +1,4 @@
+// ESLint configuration for Prettier compatibility
+{
+  "extends": ["prettier"]
+}
