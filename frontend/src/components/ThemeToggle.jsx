@@ -48,17 +48,11 @@ const ThemeToggle = () => {
   };
 
   return (
-    <motion.div>
+    <motion.div className="theme-toggle-header">
       <Button
         icon={isDarkMode ? 'pi pi-sun' : 'pi pi-moon'}
         onClick={toggleTheme}
         className="p-button-rounded p-button-text"
-        style={{
-          position: 'fixed',
-          top: '1rem',
-          right: '1rem',
-          zIndex: 999,
-        }}
         tooltip={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         tooltipOptions={{ position: 'left' }}
       />

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import Header from './components/Header';
-import WizardContainer from './components/wizard/WizardContainer';
-import ThemeToggle from './components/ThemeToggle';
+import ProductSelection from './components/ProductSelection';
+import PersonaCarousel from './components/PersonaCarousel';
+import ProgressSteps from './components/ProgressSteps';
 
 // Set up axios with base URL
 const api = axios.create({
@@ -24,6 +25,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [apiStatus, setApiStatus] = useState('unknown'); // 'online', 'offline', 'unknown'
+  const [currentStep, setCurrentStep] = useState(0); // Track current wizard step
 
   // Check API health
   const checkApiHealth = async () => {
@@ -183,6 +185,37 @@ function App() {
     }
   };
 
+  // Navigate to next step
+  const handleNextStep = () => {
+    setCurrentStep(prevStep => prevStep + 1);
+  };
+
+  // Navigate to previous step
+  const handlePrevStep = () => {
+    setCurrentStep(prevStep => Math.max(0, prevStep - 1));
+  };
+
+  // Render current step content
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 0:
+        return (
+          <ProductSelection onNextStep={handleNextStep} setSelectedProduct={setSelectedProduct} />
+        );
+      case 1:
+        return (
+          <PersonaCarousel
+            onNextStep={handleNextStep}
+            onPrevStep={handlePrevStep}
+            setSelectedPersona={setSelectedPersona}
+          />
+        );
+      // Add more cases for additional steps
+      default:
+        return <ProductSelection onNextStep={handleNextStep} />;
+    }
+  };
+
   if (initialLoading) {
     return (
       <div className="flex justify-content-center align-items-center" style={{ height: '100vh' }}>
@@ -192,9 +225,17 @@ function App() {
     );
   }
 
+  // Update steps based on currentStep
+  const steps = [
+    { number: 1, label: 'PRODUCT', active: currentStep === 0 },
+    { number: 2, label: 'PERSONA', active: currentStep === 1 },
+    { number: 3, label: 'OPTIONS', active: currentStep === 2 },
+    { number: 4, label: 'REVIEW', active: currentStep === 3 },
+  ];
+
   return (
     <div
-      className="app-container p-4"
+      className="app-container"
       style={{
         height: '100vh',
         position: 'relative',
@@ -203,30 +244,10 @@ function App() {
         flexDirection: 'column',
       }}
     >
-      <ThemeToggle />
-      <div className="container" style={{ flex: 1, overflow: 'auto' }}>
-        <Header />
-
-        <div className="card mt-4">
-          <WizardContainer
-            products={products}
-            personas={personas}
-            smalltalks={smalltalks}
-            selectedProduct={selectedProduct}
-            setSelectedProduct={setSelectedProduct}
-            selectedPersona={selectedPersona}
-            setSelectedPersona={setSelectedPersona}
-            selectedSmalltalk={selectedSmalltalk}
-            setSelectedSmalltalk={setSelectedSmalltalk}
-            onGenerate={handleGeneratePrompt}
-            generatedPrompt={generatedPrompt}
-            outputFiles={outputFiles}
-            onViewOutput={handleViewOutput}
-            loading={loading}
-            apiStatus={apiStatus}
-            message={message}
-          />
-        </div>
+      <Header />
+      <div className="px-7 py-4">
+        <ProgressSteps steps={steps} />
+        {renderStepContent()}
       </div>
     </div>
   );
