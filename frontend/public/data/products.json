@@ -1,0 +1,26 @@
+[
+  {
+    "id": "product1",
+    "name": "Health Happy",
+    "shortDescription": "Health Insurance with lump-sum benefits up to 25M THB/year, covers OPD and IPD",
+    "imageUrl": "img/aia_health_happy.jpg"
+  },
+  {
+    "id": "product2",
+    "name": "Endowment",
+    "shortDescription": "Accident Insurance covering medical expenses with cashless hospital benefits",
+    "imageUrl": "img/aia_endowment.jpg"
+  },
+  {
+    "id": "product3",
+    "name": "Infinite Care",
+    "shortDescription": "Premium health insurance with worldwide coverage and comprehensive treatment",
+    "imageUrl": "img/aia_ci.jpg"
+  },
+  {
+    "id": "product4",
+    "name": "CI SuperCare",
+    "shortDescription": "Critical Illness Cover for early-stage and severe diseases, including major causes of death",
+    "imageUrl": "img/aia_paylife.jpg"
+  }
+]

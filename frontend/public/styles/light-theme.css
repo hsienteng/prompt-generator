@@ -1,42 +1,52 @@
-/* Light Theme CSS with improved contrast */
+/* AIA Thailand Sales Genie Theme - Light Mode */
 :root {
-  --primary-color: #2e4481;          /* Maintained primary blue */
-  --primary-dark: #1f2f56;           /* Darker version for contrast */
-  --primary-light: #5474b4;          /* Lighter version for hover states */
-  --secondary-color: #1f2f56;
-  --accent-color: #e01e2c;
-  --background-color: #f8f9fa;
-  --background-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  --text-color: #222222;             /* Darker text for better contrast */
-  --text-muted: #5c636a;             /* Darker muted text */
-  --card-background: #ffffff;
-  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --aia-red: #ed1b2f;
+  --aia-gray: #58595b;
+  --aia-light: #f5f5f5;
+  --aia-dark: #2d2d2d;
+
+  --primary-color: var(--aia-red); /* AIA Red */
+  --primary-dark: #d0182a; /* Darker red for hover states */
+  --primary-light: #f28a97; /* Lighter red for accents */
+  --secondary-color: var(--aia-gray); /* AIA Gray for secondary elements */
+  --accent-color: var(--aia-red);
+  --background-color: var(--aia-light); /* Light gray background */
+  --background-gradient: linear-gradient(135deg, var(--aia-light) 0%, #eeeeee 100%);
+  --text-color: var(--aia-dark); /* Dark text for good contrast */
+  --text-muted: var(--aia-gray); /* AIA Gray for muted text */
+  --card-background: #ffffff; /* Pure white cards */
+  --card-shadow: 0 2px 8px rgba(237, 27, 47, 0.1);
   --input-background: #ffffff;
-  --input-border: #ced4da;
-  --input-text: #222222;             /* Darker input text */
-  --panel-background: #f8f9fa;
-  --success-color: #198754;          /* Darker green for better contrast */
-  --warning-color: #ffc107;
-  --danger-color: #dc3545;
-  --info-color: #0891b2;             /* Darker blue for better contrast */
-  --disabled-color: #6c757d;         /* Darker disabled for better contrast */
-  --dropdown-hover: #e9ecef;         /* Slightly darker hover */
-  --divider-color: #ced4da;          /* Darker divider */
-  --step-inactive: #adb5bd;          /* Much darker inactive step */
-  --toast-success-bg: #d4edda;
-  --toast-success-text: #155724;
-  --toast-error-bg: #f8d7da;
-  --toast-error-text: #721c24;
-  --toast-info-bg: #d1ecf1;
-  --toast-info-text: #0c5460;
-  --focus-outline: #4d6ed0;          /* Blue focus outline */
-  --link-color: #0d6efd;             /* Standard link blue */
-  --link-hover-color: #0a58ca;       /* Darker link hover */
+  --input-border: #e0e0e0;
+  --input-text: var(--aia-dark);
+  --panel-background: var(--aia-light);
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --info-color: #2196f3;
+  --disabled-color: #bdbdbd;
+  --dropdown-hover: #fff5f6; /* Light red hover */
+  --divider-color: #e0e0e0;
+  --step-inactive: #bdbdbd;
+  --toast-success-bg: #e8f5e8;
+  --toast-success-text: #2e7d32;
+  --toast-error-bg: #ffebee;
+  --toast-error-text: #c62828;
+  --toast-info-bg: #e3f2fd;
+  --toast-info-text: #1565c0;
+  --focus-outline: var(--aia-red);
+  --link-color: var(--aia-red);
+  --link-hover-color: var(--primary-dark);
+  --header-background: #ffffff; /* White header background */
+  --header-text: var(--aia-gray); /* Gray text in header */
 }
 
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Focus state improvements */
@@ -51,12 +61,51 @@ body {
   overflow: hidden;
 }
 
+/* Sticky Header */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--header-background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+}
+
+.header {
+  background: var(--header-background);
+  color: var(--header-text);
+  padding: 0.75rem 2rem;
+  margin: 0;
+  border-radius: 0;
+  position: relative;
+}
+
+.header h1 {
+  color: var(--header-text);
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.header p {
+  color: var(--aia-gray);
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.header .aia-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .p-card,
 .card {
   background-color: var(--card-background);
   color: var(--text-color);
   box-shadow: var(--card-shadow);
   border: 1px solid var(--divider-color);
+  border-radius: 12px;
 }
 
 .p-card .p-card-header,
@@ -64,12 +113,14 @@ body {
   background-color: var(--primary-color);
   color: white;
   border-bottom: 1px solid var(--divider-color);
+  border-radius: 12px 12px 0 0;
 }
 
 .p-dropdown {
   background-color: var(--input-background);
   border-color: var(--input-border);
   color: var(--input-text);
+  border-radius: 8px;
 }
 
 .p-dropdown-item {
@@ -84,25 +135,53 @@ body {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   color: white;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .p-button.p-button-raised:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
 }
 
 .p-button.p-button-success {
   background-color: var(--success-color);
   border-color: var(--success-color);
   color: white;
+  border-radius: 8px;
 }
 
 .p-button.p-button-outlined {
   color: var(--primary-color);
   border-color: var(--primary-color);
+  border-radius: 8px;
 }
 
-/* Steps Component Styling - Improved for Light Mode */
+.p-button.p-button-outlined:hover {
+  background-color: var(--dropdown-hover);
+  color: var(--primary-dark);
+}
+
+/* Continue to Select Persona Button */
+.continue-button {
+  background-color: var(--aia-red) !important;
+  border: none !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 25px !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  box-shadow: 0 4px 12px rgba(237, 27, 47, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.continue-button:hover {
+  background-color: var(--primary-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(237, 27, 47, 0.4) !important;
+}
+
+/* Steps Component Styling */
 .p-steps .p-steps-item .p-menuitem-link {
   background-color: transparent;
 }
@@ -115,7 +194,7 @@ body {
 }
 
 .p-steps .p-steps-item:not(.p-highlight):not(.p-disabled) .p-menuitem-link .p-steps-number {
-  background-color: #e9ecef;
+  background-color: var(--aia-light);
   color: var(--text-muted);
   border: 2px solid var(--step-inactive);
 }
@@ -143,42 +222,48 @@ body {
   border-top: 3px solid var(--primary-color);
 }
 
-/* Progress Bar Improvements */
+/* Progress Bar */
 .p-progressbar {
-  background-color: #e9ecef;
+  background-color: #eeeeee;
   border: 1px solid var(--divider-color);
   height: 8px !important;
+  border-radius: 4px;
 }
 
 .p-progressbar .p-progressbar-value {
-  background-color: var(--primary-color);
+  background-color: var(--aia-red);
+  border-radius: 4px;
 }
 
 .alert-success {
   color: var(--toast-success-text);
   background-color: var(--toast-success-bg);
   border: 1px solid var(--success-color);
+  border-radius: 8px;
 }
 
 .alert-error {
   color: var(--toast-error-text);
   background-color: var(--toast-error-bg);
   border: 1px solid var(--danger-color);
+  border-radius: 8px;
 }
 
 .alert-info {
   color: var(--toast-info-text);
   background-color: var(--toast-info-bg);
   border: 1px solid var(--info-color);
+  border-radius: 8px;
 }
 
 .prompt-preview {
   background-color: var(--panel-background);
   border: 1px solid var(--divider-color);
+  border-radius: 8px;
 }
 
 code {
-  background-color: #f0f0f0;
+  background-color: #eeeeee;
   color: var(--accent-color);
   padding: 2px 4px;
   border-radius: 4px;
@@ -187,32 +272,26 @@ code {
 
 .output-list li {
   border-bottom: 1px solid var(--divider-color);
+  border-radius: 4px;
+  margin-bottom: 4px;
 }
 
 .output-list li:hover {
   background-color: var(--dropdown-hover);
 }
 
-.header {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color) 0%,
-    var(--secondary-color) 100%
-  );
-  color: white;
-  border-bottom: 1px solid var(--divider-color);
-}
-
-/* Light theme overrides for PrimeReact components */
+/* PrimeReact component overrides */
 .p-dropdown-panel {
   background-color: var(--input-background);
   border-color: var(--input-border);
+  border-radius: 8px;
 }
 
 .p-toast .p-toast-message {
   background-color: var(--card-background);
   color: var(--text-color);
   border: 1px solid var(--divider-color);
+  border-radius: 8px;
 }
 
 .p-toast .p-toast-message.p-toast-message-success {
@@ -227,19 +306,11 @@ code {
   border-left: 4px solid var(--info-color);
 }
 
-.p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
-  color: var(--text-color);
-}
-
-.p-toast .p-toast-message .p-toast-message-content .p-toast-summary {
-  color: var(--text-color);
-  font-weight: bold;
-}
-
 .p-inputtext {
   background-color: var(--input-background);
   color: var(--input-text);
   border-color: var(--input-border);
+  border-radius: 8px;
 }
 
 .p-inputtext:enabled:focus {
@@ -257,7 +328,12 @@ code {
   color: white !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-color);
 }
 
@@ -267,8 +343,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .output-list li {
-  padding: 0.5rem;
+  padding: 0.75rem;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .section {
@@ -285,7 +362,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
   border: 1px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: 8px;
 }
 
 a {
@@ -296,4 +373,92 @@ a {
 a:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
+}
+
+/* Container adjustments for sticky header */
+.container {
+  padding-top: 1rem;
+}
+
+/* Animation improvements */
+.card-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.card-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+/* Product card styling */
+.product-card {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  border-color: var(--primary-light);
+  box-shadow: 0 4px 16px rgba(237, 27, 47, 0.15);
+  transform: translateY(-2px);
+}
+
+.product-card.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 16px rgba(237, 27, 47, 0.25);
+}
+
+/* Theme toggle button positioning */
+.theme-toggle-header .p-button {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--aia-gray) !important;
+  border-radius: 50% !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.theme-toggle-header .p-button:hover {
+  background-color: #f0f0f0 !important;
+}
+
+/* Legacy theme toggle (for backwards compatibility) */
+.theme-toggle {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  z-index: 1001;
+}
+
+.theme-toggle .p-button {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--aia-gray) !important;
+  border-radius: 50% !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.theme-toggle .p-button:hover {
+  background-color: #f0f0f0 !important;
 }

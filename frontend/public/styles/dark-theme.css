@@ -1,380 +1,344 @@
-/* Dark Theme CSS with improved contrast */
+/* AIA Thailand Sales Genie Theme - Dark Mode */
 :root {
-  --primary-color: #4d6ed0;         /* Brighter primary blue */
-  --secondary-color: #3554a5;        /* Brighter secondary blue */
-  --accent-color: #ff4d5e;          /* Brighter accent red */
-  --background-color: #121212;      /* Kept dark background */
-  --background-gradient: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-  --text-color: #ffffff;            /* Pure white for better readability */
-  --text-muted: #b0b0b0;            /* Muted text that still has good contrast */
-  --card-background: #1e1e1e;       /* Kept card background */
-  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);  /* Stronger shadow */
-  --input-background: #2c2c2c;      /* Slightly lighter input background */
-  --input-border: #666666;          /* Higher contrast border */
-  --input-text: #ffffff;            /* Pure white text for inputs */
-  --panel-background: #2a2a2a;      /* Lighter panel background */
-  --surface-card: #2a2a2a;          /* For surface cards */
-  --surface-section: #222222;       /* For surface sections */
-  --surface-50: #333333;            /* For surface-50 class */
-  --success-color: #2ecc71;         /* Brighter success green */
-  --warning-color: #ffcc00;         /* Brighter warning yellow */
-  --danger-color: #ff4d4d;          /* Brighter danger red */
-  --info-color: #29b6f6;            /* Brighter info blue */
-  --disabled-color: #8c8c8c;        /* Higher contrast disabled */
-  --dropdown-hover: #3a3a3a;        /* Brighter dropdown hover */
-  --divider-color: #555555;         /* Higher contrast divider */
-  --step-inactive: #444444;         /* Higher contrast inactive step */
-  --toast-success-bg: #1e462a;      /* Darker success background */
-  --toast-success-text: #aeffae;    /* Brighter success text */
-  --toast-error-bg: #5c2329;        /* Darker error background */
-  --toast-error-text: #ffb3b8;      /* Brighter error text */
-  --toast-info-bg: #1a4550;         /* Darker info background */
-  --toast-info-text: #a0e4ff;       /* Brighter info text */
-  --link-color: #5d8aff;            /* Bright link color */
-  --link-hover-color: #80a4ff;      /* Brighter hover link color */
-  --button-text: #ffffff;           /* Consistent button text color */
-  --selection-background: #3d5cb0;  /* Selection background */
-  --selection-text: #ffffff;        /* Selection text */
-  --focus-outline: #5d8aff;         /* Focus outline color */
+  --aia-red: #ed1b2f;
+  --aia-gray: #58595b;
+  --aia-light: #2d2d2d;    /* Inverted for dark mode */
+  --aia-dark: #f5f5f5;     /* Inverted for dark mode */
+  
+  --primary-color: var(--aia-red);           /* AIA Red */
+  --primary-dark: #d0182a;                   /* Darker red for hover states */
+  --primary-light: #f28a97;                  /* Lighter red for accents */
+  --secondary-color: var(--aia-gray);        /* AIA Gray for secondary elements */
+  --accent-color: var(--aia-red);
+  --background-color: var(--aia-light);      /* Dark background */
+  --background-gradient: linear-gradient(135deg, var(--aia-light) 0%, #1a1a1a 100%);
+  --text-color: var(--aia-dark);             /* Light text for dark mode */
+  --text-muted: #B0B0B0;                     /* Lighter muted text */
+  --card-background: #1E1E1E;                /* Dark cards */
+  --card-shadow: 0 2px 8px rgba(237, 27, 47, 0.2);
+  --input-background: #2A2A2A;
+  --input-border: #404040;
+  --input-text: var(--aia-dark);
+  --panel-background: var(--aia-light);
+  --success-color: #66BB6A;
+  --warning-color: #FFB74D;
+  --danger-color: #EF5350;
+  --info-color: #42A5F5;
+  --disabled-color: #666666;
+  --dropdown-hover: #2A2A2A;                 /* Dark hover */
+  --divider-color: #404040;
+  --step-inactive: #666666;
+  --toast-success-bg: #2E7D32;
+  --toast-success-text: #FFFFFF;
+  --toast-error-bg: #C62828;
+  --toast-error-text: #FFFFFF;
+  --toast-info-bg: #1565C0;
+  --toast-info-text: #FFFFFF;
+  --focus-outline: var(--aia-red);
+  --link-color: var(--aia-red);
+  --link-hover-color: var(--primary-dark);
+  --header-background: #1E1E1E;              /* Dark header background */
+  --header-text: var(--aia-dark);            /* Light text in header */
 }
 
-body {
+body.dark-theme {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-/* Improve text selection contrast */
-::selection {
-  background-color: var(--selection-background);
-  color: var(--selection-text);
-}
-
 /* Focus state improvements */
-:focus {
+.dark-theme :focus {
   outline: 2px solid var(--focus-outline);
   outline-offset: 2px;
 }
 
-.app-container {
+.dark-theme .app-container {
   background: var(--background-gradient);
   height: 100vh;
   overflow: hidden;
 }
 
-.p-card,
-.card {
+/* Sticky Header */
+.dark-theme .sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--header-background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0;
+}
+
+.dark-theme .header {
+  background: var(--header-background);
+  color: var(--header-text);
+  padding: 0.75rem 2rem;
+  margin: 0;
+  border-radius: 0;
+  position: relative;
+}
+
+.dark-theme .header h1 {
+  color: var(--header-text);
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.dark-theme .header p {
+  color: #B0B0B0;
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.dark-theme .p-card,
+.dark-theme .card {
   background-color: var(--card-background);
   color: var(--text-color);
   box-shadow: var(--card-shadow);
   border: 1px solid var(--divider-color);
+  border-radius: 12px;
 }
 
-/* Fix for the review cards in step 4 */
-.surface-50,
-.p-card.surface-50 {
-  background-color: var(--surface-50) !important;
-  color: var(--text-color) !important;
-  border: 1px solid var(--divider-color);
-}
-
-.surface-50 p,
-.surface-50 strong,
-.p-card.surface-50 p,
-.p-card.surface-50 strong,
-.surface-50 pre {
-  color: var(--text-color) !important;
-}
-
-/* Fix for previous outputs section */
-.output-list li {
-  background-color: var(--surface-50) !important;
-  color: var(--text-color) !important;
-  border-color: var(--divider-color) !important;
-}
-
-.output-list li:hover {
-  background-color: var(--dropdown-hover) !important;
-}
-
-.output-list li i {
-  color: var(--primary-color) !important;
-}
-
-.text-color-secondary {
-  color: var(--text-muted) !important;
-}
-
-.surface-hover:hover {
-  background-color: var(--dropdown-hover) !important;
-}
-
-.p-card .p-card-header,
-.card-header {
+.dark-theme .p-card .p-card-header,
+.dark-theme .card-header {
   background-color: var(--primary-color);
   color: white;
   border-bottom: 1px solid var(--divider-color);
+  border-radius: 12px 12px 0 0;
 }
 
-.p-dropdown {
+.dark-theme .p-dropdown {
   background-color: var(--input-background);
   border-color: var(--input-border);
   color: var(--input-text);
+  border-radius: 8px;
 }
 
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+.dark-theme .p-dropdown-item {
   color: var(--text-color);
-  background-color: var(--input-background);
 }
 
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+.dark-theme .p-dropdown-item:hover {
   background-color: var(--dropdown-hover);
-  color: var(--text-color);
 }
 
-.p-button.p-button-raised {
+.dark-theme .p-button.p-button-raised {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
-  color: var(--button-text);
-}
-
-.p-button.p-button-raised:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-}
-
-.p-button.p-button-success {
-  background-color: var(--success-color);
-  border-color: var(--success-color);
-  color: var(--button-text);
-}
-
-.p-button.p-button-outlined {
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  background-color: transparent;
-}
-
-.p-button.p-button-outlined:hover {
-  background-color: rgba(77, 110, 208, 0.1);
-}
-
-.p-button.p-button-text {
-  color: var(--primary-color);
-}
-
-.p-button.p-button-text:hover {
-  background-color: rgba(77, 110, 208, 0.1);
-}
-
-/* Steps Component Styling - Fixed for Dark Mode */
-.p-steps .p-steps-item .p-menuitem-link {
-  background-color: transparent;
-}
-
-.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
-  background-color: var(--primary-color);
   color: white;
-}
-
-.p-steps .p-steps-item.p-highlight .p-steps-number {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.p-steps .p-steps-item .p-menuitem-link .p-steps-title {
-  color: var(--text-color);
+  border-radius: 8px;
   font-weight: 500;
 }
 
-.p-steps .p-steps-item.p-highlight .p-steps-title {
+.dark-theme .p-button.p-button-raised:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.dark-theme .p-button.p-button-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: white;
+  border-radius: 8px;
+}
+
+.dark-theme .p-button.p-button-outlined {
   color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-radius: 8px;
+}
+
+.dark-theme .p-button.p-button-outlined:hover {
+  background-color: var(--dropdown-hover);
+  color: var(--primary-light);
+}
+
+/* Continue to Select Persona Button */
+.dark-theme .continue-button {
+  background-color: var(--aia-red) !important;
+  border: none !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 25px !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  box-shadow: 0 4px 12px rgba(237, 27, 47, 0.4) !important;
+  transition: all 0.3s ease !important;
+}
+
+.dark-theme .continue-button:hover {
+  background-color: var(--primary-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(237, 27, 47, 0.5) !important;
+}
+
+/* Steps Component Styling */
+.dark-theme .p-steps .p-steps-item .p-menuitem-link .p-steps-number {
+  background-color: var(--primary-color);
+  color: white;
+  border: 2px solid var(--primary-color);
   font-weight: 600;
 }
 
-.p-steps .p-steps-item:not(.p-highlight):not(.p-disabled) .p-menuitem-link .p-steps-title {
+.dark-theme .p-steps .p-steps-item:not(.p-highlight):not(.p-disabled) .p-menuitem-link .p-steps-number {
+  background-color: var(--input-background);
   color: var(--text-muted);
+  border: 2px solid var(--step-inactive);
 }
 
-.p-steps .p-steps-item:before {
-  border-top: 3px solid var(--divider-color);
+.dark-theme .p-steps .p-steps-item .p-menuitem-link .p-steps-title {
+  color: var(--text-color);
+  font-weight: 600;
 }
 
-.p-steps .p-steps-item.p-highlight:before {
+.dark-theme .p-steps .p-steps-item.p-highlight .p-steps-title {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.dark-theme .p-steps .p-steps-item:not(.p-highlight):not(.p-disabled) .p-menuitem-link .p-steps-title {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.dark-theme .p-steps .p-steps-item:before {
+  border-top: 3px solid var(--step-inactive);
+}
+
+.dark-theme .p-steps .p-steps-item.p-highlight:before {
   border-top: 3px solid var(--primary-color);
 }
 
-/* Progress Bar Improvements */
-.p-progressbar {
-  background-color: var(--panel-background);
+/* Progress Bar */
+.dark-theme .p-progressbar {
+  background-color: var(--input-background);
   border: 1px solid var(--divider-color);
   height: 8px !important;
+  border-radius: 4px;
 }
 
-.p-progressbar .p-progressbar-value {
-  background-color: var(--primary-color);
+.dark-theme .p-progressbar .p-progressbar-value {
+  background-color: var(--aia-red);
+  border-radius: 4px;
 }
 
-.alert-success {
+.dark-theme .alert-success {
   color: var(--toast-success-text);
   background-color: var(--toast-success-bg);
   border: 1px solid var(--success-color);
+  border-radius: 8px;
 }
 
-.alert-error {
+.dark-theme .alert-error {
   color: var(--toast-error-text);
   background-color: var(--toast-error-bg);
   border: 1px solid var(--danger-color);
+  border-radius: 8px;
 }
 
-.alert-info {
+.dark-theme .alert-info {
   color: var(--toast-info-text);
   background-color: var(--toast-info-bg);
   border: 1px solid var(--info-color);
+  border-radius: 8px;
 }
 
-.prompt-preview {
-  background-color: var(--panel-background) !important;
-  border: 1px solid var(--divider-color);
-  color: var(--text-color) !important;
-}
-
-pre {
-  color: var(--text-color) !important;
-  font-family: monospace;
-}
-
-code {
+.dark-theme .prompt-preview {
   background-color: var(--panel-background);
+  border: 1px solid var(--divider-color);
+  border-radius: 8px;
+}
+
+.dark-theme code {
+  background-color: var(--input-background);
   color: var(--accent-color);
   padding: 2px 4px;
   border-radius: 4px;
   border: 1px solid var(--divider-color);
 }
 
-.header {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color) 0%,
-    var(--secondary-color) 100%
-  );
-  color: white;
-  border-bottom: 1px solid var(--divider-color);
+.dark-theme .output-list li:hover {
+  background-color: var(--dropdown-hover);
 }
 
-/* Dark theme overrides for PrimeReact components */
-.p-dropdown-panel {
+/* PrimeReact component overrides */
+.dark-theme .p-dropdown-panel {
   background-color: var(--input-background);
   border-color: var(--input-border);
+  border-radius: 8px;
 }
 
-.p-toast .p-toast-message {
+.dark-theme .p-toast .p-toast-message {
   background-color: var(--card-background);
   color: var(--text-color);
   border: 1px solid var(--divider-color);
+  border-radius: 8px;
 }
 
-.p-toast .p-toast-message.p-toast-message-success {
-  border-left: 4px solid var(--success-color);
-}
-
-.p-toast .p-toast-message.p-toast-message-error {
-  border-left: 4px solid var(--danger-color);
-}
-
-.p-toast .p-toast-message.p-toast-message-info {
-  border-left: 4px solid var(--info-color);
-}
-
-.p-toast .p-toast-message .p-toast-message-content .p-toast-detail {
-  color: var(--text-color);
-}
-
-.p-toast .p-toast-message .p-toast-message-content .p-toast-summary {
-  color: var(--text-color);
-  font-weight: bold;
-}
-
-.p-inputtext {
+.dark-theme .p-inputtext {
   background-color: var(--input-background);
   color: var(--input-text);
   border-color: var(--input-border);
+  border-radius: 8px;
 }
 
-.p-inputtext:enabled:focus {
+.dark-theme .p-inputtext:enabled:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 1px var(--primary-color);
 }
 
-/* Fix for all PrimeReact surface classes */
-.surface-0, .surface-50, .surface-100, .surface-200, .surface-300,
-.surface-400, .surface-500, .surface-600, .surface-700, .surface-800, .surface-900 {
-  background-color: var(--surface-card) !important;
-  color: var(--text-color) !important;
-}
-
-.bg-primary {
-  background-color: var(--primary-color) !important;
-  color: white !important;
-}
-
-.bg-success {
-  background-color: var(--success-color) !important;
-  color: white !important;
-}
-
-h1, h2, h3, h4, h5, h6 {
+.dark-theme h1, 
+.dark-theme h2, 
+.dark-theme h3, 
+.dark-theme h4, 
+.dark-theme h5, 
+.dark-theme h6 {
   color: var(--text-color);
 }
 
-.output-list {
-  list-style: none;
-  padding: 0;
-}
-
-.output-list li {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.section {
-  margin-bottom: 2rem;
-}
-
-.prompt-preview {
-  padding: 1rem;
-  margin-top: 1rem;
-  white-space: pre-wrap;
-}
-
-.alert {
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-}
-
-a {
+.dark-theme a {
   color: var(--link-color);
-  text-decoration: none;
 }
 
-a:hover {
+.dark-theme a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
 }
 
-/* Custom dark mode styles for background animation */
-.background-animation .animation-circle {
-  filter: blur(80px) !important;
-  opacity: 0.2 !important; /* Slightly increased opacity */
+/* Theme toggle button positioning */
+.dark-theme .theme-toggle-header .p-button {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--aia-dark) !important;
+  border-radius: 50% !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  transition: background-color 0.2s ease !important;
 }
 
-/* Border utility overrides */
-.border-bottom-1 {
-  border-bottom: 1px solid var(--divider-color) !important;
+.dark-theme .theme-toggle-header .p-button:hover {
+  background-color: #404040 !important;
+}
+
+/* Legacy theme toggle (for backwards compatibility) */
+.dark-theme .theme-toggle {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  z-index: 1001;
+}
+
+.dark-theme .theme-toggle .p-button {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--aia-dark) !important;
+  border-radius: 50% !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.dark-theme .theme-toggle .p-button:hover {
+  background-color: #404040 !important;
 }

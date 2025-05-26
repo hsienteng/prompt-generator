@@ -1,0 +1,30 @@
+[
+  {
+    "id": "persona-1",
+    "name": "Anan Yodsuwan",
+    "age": 34,
+    "image": "img/anan.png",
+    "needs": ["Health coverage", "Legacy planning", "Peace of mind"]
+  },
+  {
+    "id": "persona-2",
+    "name": "Som Chai",
+    "age": 25,
+    "image": "img/somchai.png",
+    "needs": ["Quick and efficient service", "Digital-first solutions", "Transparent pricing"]
+  },
+  {
+    "id": "persona-3",
+    "name": "Somsri",
+    "age": 42,
+    "image": "img/somsri.png",
+    "needs": ["Investment opportunities", "Retirement planning", "Tax optimization"]
+  },
+  {
+    "id": "persona-4",
+    "name": "Somorn",
+    "age": 41,
+    "image": "img/samorn.png",
+    "needs": ["Family protection plans", "Educational savings", "Comprehensive coverage"]
+  }
+]
