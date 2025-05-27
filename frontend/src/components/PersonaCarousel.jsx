@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from 'primereact/button';
+import { useTranslation } from 'react-i18next';
 import PersonaCard from './cards/PersonaCard';
 import customers from '../../public/data/persona.json';
 
 const CustomerCarousel = ({ onNextStep, onPrevStep, setSelectedPersona }) => {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -143,7 +145,7 @@ const CustomerCarousel = ({ onNextStep, onPrevStep, setSelectedPersona }) => {
       <div className="flex justify-content-center align-items-center px-4 py-3">
         <div className="flex w-full" style={{ maxWidth: '600px' }}>
           <Button
-            label="Previous"
+            label={t('common.previous')}
             icon="pi pi-arrow-left"
             onClick={onPrevStep}
             disabled={!onPrevStep}
@@ -162,7 +164,7 @@ const CustomerCarousel = ({ onNextStep, onPrevStep, setSelectedPersona }) => {
             }}
           />
           <Button
-            label="Next"
+            label={t('common.next')}
             icon="pi pi-arrow-right"
             iconPos="right"
             onClick={onNextStep}

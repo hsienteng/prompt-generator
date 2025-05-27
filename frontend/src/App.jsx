@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ProgressSpinner } from 'primereact/progressspinner';
+import { useTranslation } from 'react-i18next';
 import Header from './components/Header';
 import ProductSelection from './components/ProductSelection';
 import PersonaCarousel from './components/PersonaCarousel';
@@ -13,6 +14,7 @@ const api = axios.create({
 });
 
 function App() {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [personas, setPersonas] = useState([]);
   const [smalltalks, setSmalltalks] = useState([]);
@@ -37,7 +39,7 @@ function App() {
       console.error('API health check failed:', error);
       setApiStatus('offline');
       setMessage({
-        text: 'Backend server is not responding. Please ensure it is running on port 5000.',
+        text: t('messages.backendError'),
         type: 'error',
       });
       return false;
@@ -78,7 +80,7 @@ function App() {
       console.error('Error fetching prompts:', error);
 
       // Extract the specific error message if available
-      let errorMsg = 'Error loading prompts. Please ensure the backend server is running.';
+      let errorMsg = t('messages.errorFetching');
       if (error.response && error.response.data && error.response.data.error) {
         errorMsg = `Error: ${error.response.data.error}`;
       }
@@ -117,7 +119,7 @@ function App() {
   const handleGeneratePrompt = async promptOrder => {
     if (!selectedProduct || !selectedPersona || !selectedSmalltalk) {
       setMessage({
-        text: 'Please select all prompt components',
+        text: t('messages.selectAll'),
         type: 'error',
       });
       return;
@@ -136,7 +138,7 @@ function App() {
 
       setGeneratedPrompt(response.data.content);
       setMessage({
-        text: `Prompt generated and saved as: ${response.data.filename}`,
+        text: `${t('messages.promptGenerated')} ${response.data.filename}`,
         type: 'success',
       });
 
@@ -146,7 +148,7 @@ function App() {
       console.error('Error generating prompt:', error);
 
       // Extract the specific error message if available
-      let errorMsg = 'Error generating prompt. Please try again.';
+      let errorMsg = t('messages.errorGenerating');
       if (error.response && error.response.data && error.response.data.message) {
         errorMsg = error.response.data.message;
       }
@@ -166,12 +168,12 @@ function App() {
       setLoading(true);
       const response = await api.get(`/api/output/${filename}`);
       setGeneratedPrompt(response.data.content);
-      setMessage({ text: `Loaded: ${filename}`, type: 'success' });
+      setMessage({ text: `${t('messages.loaded')} ${filename}`, type: 'success' });
     } catch (error) {
       console.error('Error loading output file:', error);
 
       // Extract the specific error message if available
-      let errorMsg = 'Error loading output file. Please try again.';
+      let errorMsg = t('messages.errorLoading');
       if (error.response && error.response.data && error.response.data.message) {
         errorMsg = error.response.data.message;
       }
@@ -220,17 +222,17 @@ function App() {
     return (
       <div className="flex justify-content-center align-items-center" style={{ height: '100vh' }}>
         <ProgressSpinner style={{ width: '50px', height: '50px' }} />
-        <div className="ml-3">Loading application...</div>
+        <div className="ml-3">{t('messages.loading')}</div>
       </div>
     );
   }
 
   // Update steps based on currentStep
   const steps = [
-    { number: 1, label: 'PRODUCT', active: currentStep === 0 },
-    { number: 2, label: 'PERSONA', active: currentStep === 1 },
-    { number: 3, label: 'OPTIONS', active: currentStep === 2 },
-    { number: 4, label: 'REVIEW', active: currentStep === 3 },
+    { number: 1, label: t('steps.product'), active: currentStep === 0 },
+    { number: 2, label: t('steps.persona'), active: currentStep === 1 },
+    { number: 3, label: t('steps.options'), active: currentStep === 2 },
+    { number: 4, label: t('steps.review'), active: currentStep === 3 },
   ];
 
   return (

@@ -1,8 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
 
 function Header() {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       className="sticky-header px-4"
@@ -34,11 +38,12 @@ function Header() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                Sales Genie
+                {t('header.title')}
               </motion.h1>
             </div>
           </div>
-          <div>
+          <div className="flex align-items-center gap-3">
+            <LanguageSwitcher />
             <ThemeToggle />
           </div>
         </div>

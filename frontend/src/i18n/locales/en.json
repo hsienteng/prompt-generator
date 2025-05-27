@@ -1,0 +1,73 @@
+{
+  "header": {
+    "title": "Sales Genie",
+    "language": "Language"
+  },
+  "pages": {
+    "productSelection": "Select a Product",
+    "personaSelection": "Choose Your Persona",
+    "optionsConfiguration": "Configure Options",
+    "reviewAndGenerate": "Review & Generate"
+  },
+  "steps": {
+    "product": "PRODUCT",
+    "persona": "PERSONA", 
+    "options": "OPTIONS",
+    "review": "REVIEW"
+  },
+  "products": {
+    "healthHappy": {
+      "name": "Health Happy",
+      "description": "Health Insurance with lump-sum benefits up to 25M THB/year, covers OPD and IPD"
+    },
+    "endowment": {
+      "name": "Endowment", 
+      "description": "Accident Insurance covering medical expenses with cashless hospital benefits"
+    },
+    "infiniteCare": {
+      "name": "Infinite Care",
+      "description": "Premium health insurance with worldwide coverage and comprehensive treatment"
+    },
+    "ciSuperCare": {
+      "name": "CI SuperCare",
+      "description": "Critical Illness Cover for early-stage and severe diseases, including major causes of death"
+    }
+  },
+  "persona": {
+    "age": "Age",
+    "needs": "Needs",
+    "needsItems": {
+      "healthCoverage": "Health coverage",
+      "legacyPlanning": "Legacy planning",
+      "peaceOfMind": "Peace of mind",
+      "quickEfficientService": "Quick and efficient service",
+      "digitalFirstSolutions": "Digital-first solutions",
+      "transparentPricing": "Transparent pricing",
+      "investmentOpportunities": "Investment opportunities",
+      "retirementPlanning": "Retirement planning",
+      "taxOptimization": "Tax optimization",
+      "familyProtectionPlans": "Family protection plans",
+      "educationalSavings": "Educational savings",
+      "comprehensiveCoverage": "Comprehensive coverage"
+    }
+  },
+  "messages": {
+    "loading": "Loading application...",
+    "backendError": "Backend server is not responding. Please ensure it is running on port 5000.",
+    "selectAll": "Please select all prompt components",
+    "promptGenerated": "Prompt generated and saved as:",
+    "errorGenerating": "Error generating prompt. Please try again.",
+    "loaded": "Loaded:",
+    "errorLoading": "Error loading output file. Please try again.",
+    "errorFetching": "Error loading prompts. Please ensure the backend server is running."
+  },
+  "common": {
+    "next": "Next",
+    "previous": "Previous",
+    "generate": "Generate",
+    "view": "View",
+    "close": "Close",
+    "continue": "Continue",
+    "continueToSelectPersona": "Continue to Select Persona"
+  }
+}

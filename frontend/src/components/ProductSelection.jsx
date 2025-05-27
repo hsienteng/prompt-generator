@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
+import { useTranslation } from 'react-i18next';
 import products from '../../public/data/products.json';
 import ProductCard from './cards/ProductCard';
+import { translateProducts } from '../i18n/translateDynamicContent';
 import clsx from 'clsx';
 
 const ProductSelectionPage = ({ onNextStep, setSelectedProduct: setAppSelectedProduct }) => {
+  const { t } = useTranslation();
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // Translate products data
+  const translatedProducts = translateProducts(products, t);
 
   const toggleProductSelection = productId => {
     setSelectedProduct(prevSelected => (prevSelected === productId ? null : productId));
@@ -23,7 +29,7 @@ const ProductSelectionPage = ({ onNextStep, setSelectedProduct: setAppSelectedPr
   return (
     <div className="min-h-screen py-3">
       <div className="grid">
-        {products.map(product => (
+        {translatedProducts.map(product => (
           <div key={product.id} className="col-12 sm:col-6 md:col-4 lg:col-3 p-2">
             <ProductCard
               product={product}
@@ -37,7 +43,7 @@ const ProductSelectionPage = ({ onNextStep, setSelectedProduct: setAppSelectedPr
 
       <div className="text-center mt-6">
         <Button
-          label="Continue to Select Persona"
+          label={t('common.continueToSelectPersona')}
           icon="pi pi-arrow-right"
           iconPos="right"
           className={clsx(

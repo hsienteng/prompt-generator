@@ -1,8 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { translateNeeds } from '../../i18n/translateDynamicContent';
 
 const PersonaCard = ({ customer, position, isCenter, isVisible }) => {
+  const { t } = useTranslation();
+  
   if (!isVisible) return null;
+
+  // Translate the customer needs
+  const translatedNeeds = translateNeeds(customer.needs, t);
 
   const getCardVariant = position => {
     if (position === 0) {
@@ -62,9 +69,9 @@ const PersonaCard = ({ customer, position, isCenter, isVisible }) => {
           />
           <div className="flex-1">
             <h3 className="text-2xl font-bold text-900 m-0 mb-2">{customer.name}</h3>
-            <p className="text-600 m-0 mb-3 text-lg">Age {customer.age}</p>
-            <h4 className="text-lg font-bold text-900 m-0 mb-2">Needs</h4>
-            <p className="text-600 m-0 line-height-3 text-base">{customer.needs.join(', ')}</p>
+            <p className="text-600 m-0 mb-3 text-lg">{t('persona.age')} {customer.age}</p>
+            <h4 className="text-lg font-bold text-900 m-0 mb-2">{t('persona.needs')}</h4>
+            <p className="text-600 m-0 line-height-3 text-base">{translatedNeeds.join(', ')}</p>
           </div>
         </div>
       </motion.div>
