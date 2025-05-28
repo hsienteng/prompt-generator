@@ -68,7 +68,13 @@
     "view": "View",
     "close": "Close",
     "continue": "Continue",
-    "continueToSelectPersona": "Continue to Select Persona"
+    "continueToSelectPersona": "Continue to Select Persona",
+    "customizeOrder": "Customize Order",
+    "dragToReorder": "Drag to reorder components:",
+    "product": "Product",
+    "persona": "Persona",
+    "difficulty": "Difficulty Level",
+    "smallTalk": "Small Talk"
   },
   "configureOptions": {
     "selectSmallTalk": "Select Small Talk",

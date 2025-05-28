@@ -35,10 +35,10 @@ const difficultyOptions = [
 ];
 
 const defaultOrder = [
-  { id: 'product', label: 'steps.product', icon: 'pi pi-shield' },
-  { id: 'persona', label: 'steps.persona', icon: 'pi pi-user' },
-  { id: 'difficulty', label: 'configureOptions.selectDifficulty', icon: 'pi pi-chart-bar' },
-  { id: 'smalltalk', label: 'configureOptions.selectSmallTalk', icon: 'pi pi-comment' },
+  { id: 'product', label: 'common.product', icon: 'pi pi-shield' },
+  { id: 'persona', label: 'common.persona', icon: 'pi pi-user' },
+  { id: 'difficulty', label: 'common.difficulty', icon: 'pi pi-chart-bar' },
+  { id: 'smalltalk', label: 'common.smallTalk', icon: 'pi pi-comment' },
 ];
 
 export default function Review({ onPrevStep, onGeneratePrompt }) {
