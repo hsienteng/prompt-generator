@@ -75,5 +75,3 @@ next-env.d.ts
 .flaskenv
 instance/
 .webassets-cache
-
-/output
