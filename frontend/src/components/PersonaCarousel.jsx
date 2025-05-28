@@ -1,65 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from 'primereact/button';
 import { useTranslation } from 'react-i18next';
 import PersonaCard from './cards/PersonaCard';
-import customers from '../../public/data/persona.json';
+import customers from '../data/persona.json';
+import usePersonaStore from '../store/personaStore';
 
-const CustomerCarousel = ({ onNextStep, onPrevStep, setSelectedPersona }) => {
+const PersonaCarousel = memo(({ onNextStep, onPrevStep }) => {
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const setSelectedPersona = usePersonaStore(state => state.setSelectedPersona);
 
   useEffect(() => {
-    if (setSelectedPersona && customers.length > 0) {
+    if (customers.length > 0) {
       setSelectedPersona(customers[0]);
     }
   }, [setSelectedPersona]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     const newIndex = currentIndex === customers.length - 1 ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-    if (setSelectedPersona) {
-      setSelectedPersona(customers[newIndex]);
-    }
+    setSelectedPersona(customers[newIndex]);
     setTimeout(() => setIsTransitioning(false), 300);
-  };
+  }, [currentIndex, isTransitioning, setSelectedPersona]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     const newIndex = currentIndex === 0 ? customers.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
-    if (setSelectedPersona) {
-      setSelectedPersona(customers[newIndex]);
-    }
+    setSelectedPersona(customers[newIndex]);
     setTimeout(() => setIsTransitioning(false), 300);
-  };
+  }, [currentIndex, isTransitioning, setSelectedPersona]);
 
-  const getCardPosition = cardIndex => {
-    let position = cardIndex - currentIndex;
-    if (position > customers.length / 2) position -= customers.length;
-    if (position < -customers.length / 2) position += customers.length;
-    return position;
-  };
+  const getCardPosition = useCallback(
+    cardIndex => {
+      let position = cardIndex - currentIndex;
+      if (position > customers.length / 2) position -= customers.length;
+      if (position < -customers.length / 2) position += customers.length;
+      return position;
+    },
+    [currentIndex]
+  );
 
-  const renderCustomerCard = (customer, index) => {
-    const position = getCardPosition(index);
-    const isCenter = position === 0;
-    const isVisible = Math.abs(position) <= 1;
+  const renderCustomerCard = useCallback(
+    (customer, index) => {
+      const position = getCardPosition(index);
+      const isCenter = position === 0;
+      const isVisible = Math.abs(position) <= 1;
 
-    return (
-      <PersonaCard
-        key={customer.id}
-        customer={customer}
-        position={position}
-        isCenter={isCenter}
-        isVisible={isVisible}
-      />
-    );
-  };
+      if (!isVisible) return null;
+
+      return (
+        <PersonaCard
+          key={customer.id}
+          customer={customer}
+          position={position}
+          isCenter={isCenter}
+          isVisible={isVisible}
+        />
+      );
+    },
+    [getCardPosition]
+  );
 
   const buttonVariants = {
     initial: { scale: 1 },
@@ -101,9 +107,7 @@ const CustomerCarousel = ({ onNextStep, onPrevStep, setSelectedPersona }) => {
         >
           <Button
             icon="pi pi-chevron-left"
-            onClick={() => {
-              prevSlide();
-            }}
+            onClick={prevSlide}
             className="p-button-rounded border-circle"
             style={{
               width: '3rem',
@@ -128,9 +132,7 @@ const CustomerCarousel = ({ onNextStep, onPrevStep, setSelectedPersona }) => {
         >
           <Button
             icon="pi pi-chevron-right"
-            onClick={() => {
-              nextSlide();
-            }}
+            onClick={nextSlide}
             className="p-button-rounded border-circle"
             style={{
               width: '3rem',
@@ -187,6 +189,6 @@ const CustomerCarousel = ({ onNextStep, onPrevStep, setSelectedPersona }) => {
       </div>
     </div>
   );
-};
+});
 
-export default CustomerCarousel;
+export default PersonaCarousel;

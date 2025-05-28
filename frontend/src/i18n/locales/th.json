@@ -68,6 +68,30 @@
     "view": "ดู",
     "close": "ปิด",
     "continue": "ดำเนินการต่อ",
-    "continueToSelectPersona": "ดำเนินการต่อเพื่อเลือกบุคลิกภาพ"
+    "continueToSelectPersona": "ดำเนินการต่อเพื่อเลือกบุคลิกภาพ",
+    "notSelected": "ยังไม่ได้เลือก",
+    "customizeOrder": "ปรับแต่งลำดับ",
+    "dragToReorder": "ลากเพื่อจัดเรียงองค์ประกอบใหม่"
+  },
+  "configureOptions": {
+    "selectSmallTalk": "เลือกบทสนทนาเล็กๆ น้อยๆ",
+    "chooseSmallTalk": "เลือกองค์ประกอบบทสนทนาเล็กๆ น้อยๆ ที่ต้องการ:",
+    "selectDifficulty": "เลือกระดับความยาก",
+    "chooseDifficulty": "เลือกระดับการคัดค้านจากลูกค้า:",
+    "forInternalTesting": "สำหรับการทดสอบภายในเท่านั้น - การตั้งค่าดีบัก",
+    "smallTalk": {
+      "continuity": "ความต่อเนื่อง",
+      "motivational": "สร้างแรงบันดาลใจ",
+      "seasonal": "ตามฤดูกาล",
+      "tech_fact": "ข้อเท็จจริงทางเทคนิค"
+    },
+    "difficulty": {
+      "level1": "ระดับ 1: ปานกลาง",
+      "level2": "ระดับ 2: ท้าทาย",
+      "level3": "ระดับ 3: ยาก",
+      "level1Desc": "การคัดค้านจากลูกค้า 1-2 ครั้ง",
+      "level2Desc": "การคัดค้านจากลูกค้า 2-3 ครั้ง",
+      "level3Desc": "การคัดค้านจากลูกค้า 4+ ครั้ง"
+    }
   }
 }

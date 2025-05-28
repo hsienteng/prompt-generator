@@ -10,7 +10,6 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 body {
@@ -34,7 +33,6 @@ code {
   height: 100%;
   margin: 0 auto;
   padding: 1rem 2rem 2rem 2rem;
-  overflow-y: auto;
 }
 
 .container.product-step {

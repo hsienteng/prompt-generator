@@ -11,7 +11,7 @@
   },
   "steps": {
     "product": "PRODUCT",
-    "persona": "PERSONA", 
+    "persona": "PERSONA",
     "options": "OPTIONS",
     "review": "REVIEW"
   },
@@ -21,7 +21,7 @@
       "description": "Health Insurance with lump-sum benefits up to 25M THB/year, covers OPD and IPD"
     },
     "endowment": {
-      "name": "Endowment", 
+      "name": "Endowment",
       "description": "Accident Insurance covering medical expenses with cashless hospital benefits"
     },
     "infiniteCare": {
@@ -69,5 +69,26 @@
     "close": "Close",
     "continue": "Continue",
     "continueToSelectPersona": "Continue to Select Persona"
+  },
+  "configureOptions": {
+    "selectSmallTalk": "Select Small Talk",
+    "chooseSmallTalk": "Choose a small talk element to include:",
+    "selectDifficulty": "Select Difficulty Level",
+    "chooseDifficulty": "Choose the level of customer objections:",
+    "forInternalTesting": "For Internal Testing Only - Debug Settings",
+    "smallTalk": {
+      "continuity": "Continuity",
+      "motivational": "Motivational",
+      "seasonal": "Seasonal",
+      "tech_fact": "Tech Fact"
+    },
+    "difficulty": {
+      "level1": "Level 1: Moderate",
+      "level2": "Level 2: Challenging",
+      "level3": "Level 3: Difficult",
+      "level1Desc": "1-2 objections from customer",
+      "level2Desc": "2-3 objections from customer",
+      "level3Desc": "4+ objections from customer"
+    }
   }
 }

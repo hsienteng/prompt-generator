@@ -33,10 +33,12 @@ def get_prompts():
         products_dir = os.path.join(PROMPTS_DIR, 'products')
         personas_dir = os.path.join(PROMPTS_DIR, 'personas')
         smalltalks_dir = os.path.join(PROMPTS_DIR, 'smalltalks')
+        difficulty_dir = os.path.join(PROMPTS_DIR, 'difficulty')
         
         logger.debug(f"Products directory: {products_dir}")
         logger.debug(f"Personas directory: {personas_dir}")
         logger.debug(f"Smalltalks directory: {smalltalks_dir}")
+        logger.debug(f"Difficulty directory: {difficulty_dir}")
         
         # Check if directories exist
         if not os.path.exists(products_dir):
@@ -58,15 +60,19 @@ def get_prompts():
                    if f.endswith('.txt')]
         smalltalks = [f.replace('.txt', '') for f in os.listdir(smalltalks_dir) 
                      if f.endswith('.txt')]
+        difficulty = [f.replace('.txt', '') for f in os.listdir(difficulty_dir) 
+                     if f.endswith('.txt')]
         
         logger.info(f"Found products: {products}")
         logger.info(f"Found personas: {personas}")
         logger.info(f"Found smalltalks: {smalltalks}")
+        logger.info(f"Found difficulty: {difficulty}")
         
         return jsonify({
             'products': products,
             'personas': personas,
-            'smalltalks': smalltalks
+            'smalltalks': smalltalks,
+            'difficulty': difficulty
         })
     except Exception as e:
         logger.error(f"Error fetching prompts: {str(e)}")
@@ -80,74 +86,84 @@ def generate_prompt():
         data = request.json
         logger.info(f"Received generate request with data: {data}")
         
+        # Extract required components
         product = data.get('product')
         persona = data.get('persona')
         smalltalk = data.get('smalltalk')
-        prompt_order = data.get('promptOrder', ['product', 'persona', 'smalltalk'])  # Default order if not provided
+        difficulty = data.get('difficulty')
+        prompt_order = data.get('promptOrder', ['product', 'persona', 'smalltalk', 'difficulty'])
         
         logger.info(f"Using prompt order: {prompt_order}")
         
-        if not product or not persona or not smalltalk:
+        # Validate required parameters
+        if not all([product, persona, smalltalk, difficulty]):
+            missing = []
+            if not product: missing.append('product')
+            if not persona: missing.append('persona')
+            if not smalltalk: missing.append('smalltalk')
+            if not difficulty: missing.append('difficulty')
+            
             return jsonify({
                 'success': False,
-                'message': 'Missing required parameters'
+                'message': f'Missing required parameters: {", ".join(missing)}'
             }), 400
         
-        # Read product prompt
-        product_path = os.path.join(PROMPTS_DIR, 'products', f"{product}.txt")
-        logger.debug(f"Reading product from: {product_path}")
-        if not os.path.exists(product_path):
-            return jsonify({
-                'success': False,
-                'message': f'Product prompt file not found: {product}'
-            }), 404
-            
-        with open(product_path, 'r') as f:
-            product_content = f.read()
-        
-        # Read persona prompt
-        persona_path = os.path.join(PROMPTS_DIR, 'personas', f"{persona}.txt")
-        logger.debug(f"Reading persona from: {persona_path}")
-        if not os.path.exists(persona_path):
-            return jsonify({
-                'success': False,
-                'message': f'Persona prompt file not found: {persona}'
-            }), 404
-            
-        with open(persona_path, 'r') as f:
-            persona_content = f.read()
-        
-        # Read smalltalk prompt
-        smalltalk_path = os.path.join(PROMPTS_DIR, 'smalltalks', f"{smalltalk}.txt")
-        logger.debug(f"Reading smalltalk from: {smalltalk_path}")
-        if not os.path.exists(smalltalk_path):
-            return jsonify({
-                'success': False,
-                'message': f'Smalltalk prompt file not found: {smalltalk}'
-            }), 404
-            
-        with open(smalltalk_path, 'r') as f:
-            smalltalk_content = f.read()
-        
-        # Create a mapping of prompt types to their content and labels
-        prompt_components = {
+        # Define the paths and read content for each component
+        components = {
             'product': {
-                'label': 'Product Information',
-                'content': product_content
+                'path': os.path.join(PROMPTS_DIR, 'products', f"{product}.txt"),
+                'label': 'Product Information'
             },
             'persona': {
-                'label': 'Persona',
-                'content': persona_content
+                'path': os.path.join(PROMPTS_DIR, 'personas', f"{persona}.txt"),
+                'label': 'Persona'
             },
             'smalltalk': {
-                'label': 'Small Talk',
-                'content': smalltalk_content
+                'path': os.path.join(PROMPTS_DIR, 'smalltalks', f"{smalltalk}.txt"),
+                'label': 'Small Talk'
+            },
+            'difficulty': {
+                'path': os.path.join(PROMPTS_DIR, 'difficulty', f"{difficulty}.txt"),
+                'label': 'Difficulty Level'
             }
         }
         
-        # Combine prompts according to the provided order
-        combined_prompt = "# Combined Prompt\n\n"
+        # Read and validate each component
+        prompt_components = {}
+        for component_type, component_info in components.items():
+            path = component_info['path']
+            if not os.path.exists(path):
+                return jsonify({
+                    'success': False,
+                    'message': f'{component_type.capitalize()} prompt file not found: {path}'
+                }), 404
+                
+            with open(path, 'r') as f:
+                content = f.read().strip()
+                if not content:
+                    return jsonify({
+                        'success': False,
+                        'message': f'{component_type.capitalize()} prompt file is empty: {path}'
+                    }), 400
+                    
+                prompt_components[component_type] = {
+                    'label': component_info['label'],
+                    'content': content
+                }
         
+        # Combine prompts according to the provided order
+        combined_prompt = "# Generated Prompt\n\n"
+        
+        # Add timestamp and metadata
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        combined_prompt += f"Generated on: {timestamp}\n"
+        combined_prompt += f"Components used:\n"
+        combined_prompt += f"- Product: {product}\n"
+        combined_prompt += f"- Persona: {persona}\n"
+        combined_prompt += f"- Small Talk: {smalltalk}\n"
+        combined_prompt += f"- Difficulty: {difficulty}\n\n"
+        
+        # Add components in specified order
         for component_type in prompt_order:
             if component_type in prompt_components:
                 component = prompt_components[component_type]
@@ -155,7 +171,7 @@ def generate_prompt():
         
         # Generate filename with timestamp
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"prompt_{product}_{persona}_{smalltalk}_{timestamp}.txt"
+        filename = f"prompt_{product}_{persona}_{smalltalk}_{difficulty}_{timestamp}.txt"
         file_path = os.path.join(OUTPUT_DIR, filename)
         
         # Save to file
